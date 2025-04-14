@@ -1,9 +1,13 @@
 # Atos Cartorio
 Menu Ferramentas / Recriar Banco de Dados
 - Recria o banco limpando os dados.
+  
 Via Console:
+
 dotnet ef migrations add InitialCreate
+
 dotnet ef database update
+
 
 # AtosCartorio - Testes
 
