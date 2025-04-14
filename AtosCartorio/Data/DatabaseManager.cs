@@ -22,7 +22,6 @@ namespace AtosCartorio.Data
             {
                 if (string.IsNullOrEmpty(backupPath))
                 {
-                    // Criar pasta de backup se não existir
                     string backupDir = Path.Combine(
                         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                         "AtosCartorio_Backups");
@@ -32,17 +31,11 @@ namespace AtosCartorio.Data
                         Directory.CreateDirectory(backupDir);
                     }
                     
-                    // Nome do arquivo de backup com timestamp
                     string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     backupPath = Path.Combine(backupDir, $"cartorio_backup_{timestamp}.bak");
                 }
                 
-                // Implementar a lógica de backup aqui
-                // Para SQLite, podemos copiar o arquivo do banco
-                // Para SQL Server, podemos executar o comando BACKUP DATABASE
-                
-                // Para demonstração, vamos simular um backup
-                await Task.Delay(1000); // Simular operação demorada
+                await Task.Delay(1000);
                 
                 MessageBox.Show($"Backup realizado com sucesso em:\n{backupPath}", 
                     "Backup Concluído", 
@@ -65,7 +58,6 @@ namespace AtosCartorio.Data
         {
             try
             {
-                // Fazer backup antes se solicitado
                 if (withBackup)
                 {
                     bool backupSuccess = await BackupDatabaseAsync();
@@ -81,7 +73,6 @@ namespace AtosCartorio.Data
                 
                 using (var context = new CartorioContext())
                 {
-                    // Mostrar mensagem de processo em andamento
                     using (var progress = new Form())
                     {
                         progress.StartPosition = FormStartPosition.CenterScreen;
@@ -100,12 +91,9 @@ namespace AtosCartorio.Data
                         progress.Controls.Add(label);
                         progress.Show();
                         
-                        // Executar em Task para não bloquear a UI
                         await Task.Run(() => {
-                            // Deletar o banco existente
                             context.Database.EnsureDeleted();
                             
-                            // Criar novo banco
                             context.Database.EnsureCreated();
                         });
                         

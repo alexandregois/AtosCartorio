@@ -20,7 +20,6 @@ namespace AtosCartorio.Repositories
         {
             if (forceReload)
             {
-                // Desabilitar o rastreamento para obter dados frescos
                 return _context.Casamentos
                     .AsNoTracking()
                     .Include(c => c.Conjuge1)
@@ -29,7 +28,6 @@ namespace AtosCartorio.Repositories
             }
             else
             {
-                // Comportamento original
                 return _context.Casamentos
                     .Include(c => c.Conjuge1)
                     .Include(c => c.Conjuge2)

@@ -20,14 +20,12 @@ namespace AtosCartorio.Repositories
         {
             if (forceReload)
             {
-                // Desabilitar o rastreamento para obter dados frescos
                 return _context.Nascimentos
                     .AsNoTracking()                    
                     .ToList();
             }
             else
             {
-                // Comportamento original
                 return _context.Nascimentos                    
                     .ToList();
             }

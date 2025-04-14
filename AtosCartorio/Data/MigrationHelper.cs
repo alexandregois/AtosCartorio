@@ -12,7 +12,6 @@ namespace AtosCartorio.Data
             {
                 using (var context = new CartorioContext())
                 {
-                    // This will apply any pending migrations to the database
                     context.Database.Migrate();
                     
                     MessageBox.Show("Banco de dados atualizado com sucesso!", 
@@ -36,10 +35,8 @@ namespace AtosCartorio.Data
             {
                 using (var context = new CartorioContext())
                 {
-                    // Deleta o banco de dados se existir
                     bool deleted = context.Database.EnsureDeleted();
                     
-                    // Cria o banco de dados novamente com as tabelas baseadas nos modelos
                     bool created = context.Database.EnsureCreated();
                     
                     if (deleted && created)
